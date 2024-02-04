@@ -25,18 +25,45 @@ def getSecondOrderElements(n,a) -> [int]:
 
 
 #Optimal Solution
-def getSecondOrderElements2(n,a):
-    max_ele = a[0]
-    second_max = 0
+def getSecondMax(n,a):
+    max = a[0]
+    second_max = -1
 
     for i in range(n):
-        if a[i]>max_ele:
-            max_ele = a[i]
-            second_max = 
+        if a[i] > max:
+            second_max = max
+            max = a[i]
+
+        if (a[i]< max )and (a[i]> second_max):
+            second_max =a[i]
+
+    return second_max
+
+def getSecondMin(n,a):
+    min = a[0]
+    second_min = sys.maxsize
+
+    for i in range(n):
+        if a[i]<min:
+            second_min = min
+            min = a[i]
+
+        elif a[i]!= min and a[i]< second_min:
+            second_min = a[i]
+
+    return second_min
+
+def getSecondOrderElements2(n,a):
+    second_min = getSecondMin(n,a)
+    second_max = getSecondMax(n,a)
+
+    return [second_max,second_min]
 
 
-print("Better")
-print(getSecondOrderElements(6,[2,3,4,5,9,8]))
+
+
+# print("Better")
+# print(getSecondOrderElements(6,[2,3,4,5,9,8]))
 print("Optimal")
 print(getSecondOrderElements2(6,[2,3,4,5,9,8]))
 
